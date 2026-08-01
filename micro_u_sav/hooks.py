@@ -12,4 +12,4 @@ required_apps = ["frappe", "erpnext"]
 # afin qu'il survive a toute recreation du conteneur backend/frontend.
 
 after_install = "micro_u_sav.install.after_install"
-web_include_js = "/assets/micro_u_sav/js/login_banner.js?v=5"
+web_include_js = "/assets/micro_u_sav/js/login_banner.js?v=6"

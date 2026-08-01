@@ -10,6 +10,8 @@
       '#pia-login-banner .pia-col{display:flex;flex-direction:column;align-items:center;gap:10px;}' +
       '#pia-login-banner .pia-row{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#7a2e15;}' +
       '#pia-login-banner .pia-logo{width:26px;height:26px;border-radius:6px;background:#f3ded6;color:' + ACCENT + ';display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;}' +
+      '.navbar-brand{display:none !important;}' +
+      '.btn-primary{background-color:' + ACCENT + ' !important;border-color:' + ACCENT + ' !important;}' +
       '@media (max-width:640px){#pia-login-banner .pia-companies{grid-template-columns:1fr;}}';
     document.head.appendChild(style);
   }
@@ -51,22 +53,30 @@
     }
   }
 
-  function recolorBlackElements() {
-    var all = document.body.querySelectorAll('*');
-    for (var i = 0; i < all.length; i++) {
-      var el = all[i];
-      if (el.id === 'pia-login-banner' || (el.closest && el.closest('#pia-login-banner'))) continue;
-      var cs = getComputedStyle(el);
-      if (cs.backgroundColor === 'rgb(0, 0, 0)') {
-        el.style.setProperty('background-color', ACCENT, 'important');
+  var recoloredLogos = typeof WeakSet !== 'undefined' ? new WeakSet() : null;
+  function recolorLogos() {
+    var imgs = document.querySelectorAll('img.app-logo');
+    imgs.forEach(function(img) {
+      if (recoloredLogos) {
+        if (recoloredLogos.has(img)) return;
+        recoloredLogos.add(img);
+      } else if (img.dataset.piaRecolored) {
+        return;
+      } else {
+        img.dataset.piaRecolored = '1';
       }
-    }
+      fetch(img.src).then(function(r){ return r.text(); }).then(function(svgText) {
+        var recolored = svgText.replace(/#171717/gi, ACCENT);
+        var blob = new Blob([recolored], {type: 'image/svg+xml'});
+        img.src = URL.createObjectURL(blob);
+      }).catch(function(){});
+    });
   }
 
   function run() {
     insertBanner();
     replaceLoginHeading();
-    recolorBlackElements();
+    recolorLogos();
   }
 
   run();
