@@ -1,0 +1,8 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+recursive-include micro_u_sav *.json
+recursive-include micro_u_sav *.md
+recursive-include micro_u_sav *.txt
+recursive-exclude micro_u_sav *.pyc
