@@ -23,8 +23,8 @@
 
     var companies = [
       ['KALAGA', 'MICRO-U'],
-      ['PIA SERVICES', 'CANOPEE'],
-      ['OCEAN INDIEN', 'GENIUS INVEST']
+      ['PIA SERVICES', 'CANOPEE OI'],
+      ['GENIUS INVEST', 'SARA M COSMETIC']
     ];
     var colsHtml = companies.map(function(col) {
       var rowsHtml = col.map(function(name) {
