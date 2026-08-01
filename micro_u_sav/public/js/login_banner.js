@@ -5,8 +5,8 @@
     if (!document.body || !document.body.firstElementChild) return;
     var banner = document.createElement('div');
     banner.id = 'pia-login-banner';
-    banner.textContent = 'BIENVENUE SUR LE PORTAIL DE GESTION DU GROUPE PIA : KALAGA MICRO-U PIA SERVICES CANOPEE OCEAN INDIEN GENIUS INVEST';
-    banner.style.cssText = 'text-align:center;font-weight:700;font-size:15px;color:#1a1a1a;max-width:640px;margin:20px auto;padding:14px 20px;line-height:1.4;';
+    banner.innerHTML = 'BIENVENUE SUR LE PORTAIL DE GESTION DU GROUPE PIA :<br>KALAGA MICRO-U PIA SERVICES CANOPEE OCEAN INDIEN GENIUS INVEST';
+    banner.style.cssText = 'text-align:center;font-weight:700;font-size:30px;color:#B7410E;max-width:900px;margin:20px auto;padding:14px 20px;line-height:1.4;';
     document.body.insertBefore(banner, document.body.firstChild);
   }
   insertBanner();
